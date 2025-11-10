@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: imelero- <imelero-@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 17:09:15 by imelero-          #+#    #+#             */
-/*   Updated: 2025/10/22 15:58:22 by imelero-         ###   ########.fr       */
+/*   Updated: 2025/10/22 15:58:30 by imelero-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static void	ft_get_big(char *buffer, char **big)
 {
@@ -105,13 +105,13 @@ char	*get_next_line(int fd)
 {
 	char		*buffer;
 	char		*line;
-	static char	*big;
+	static char	*big[1024];
 
 	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
 		return (NULL);
-	line = ft_result(&big, buffer, fd);
+	line = ft_result(&big[fd], buffer, fd);
 	return (line);
 }
